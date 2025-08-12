@@ -1,41 +1,21 @@
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 import { Mail, ArrowRight, CheckCircle2 } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+
 import factorsImg from "@/assets/hiring-factors.png";
 import rankingsImg from "@/assets/ranked-candidates.png";
 
 const Index = () => {
-  const { toast } = useToast();
+  
 
   useEffect(() => {
     document.title = "Resume Ranking Agent – AI Resume Ranking";
   }, []);
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const name = String(formData.get("name") || "").trim();
-    const email = String(formData.get("email") || "").trim();
-    const company = String(formData.get("company") || "").trim();
-    const message = String(formData.get("message") || "").trim();
 
-    if (!email || !message) {
-      toast({ title: "Please complete required fields", description: "Email and message are required." });
-      return;
-    }
-
-    console.log("Contact form submitted", { name, email, company, message });
-    toast({ title: "Thanks!", description: "We’ll get back to you within 1 business day." });
-    (e.target as HTMLFormElement).reset();
-  };
-
-  const scrollToContact = () => {
-    const el = document.getElementById("contact");
+  const scrollToCTA = () => {
+    const el = document.getElementById("cta");
     el?.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -48,9 +28,10 @@ const Index = () => {
           </a>
           <div className="hidden md:flex items-center gap-6">
             <a href="#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">How it works</a>
-            <a href="#contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Contact</a>
-            <Button variant="outline" className="hover-scale" onClick={scrollToContact}>
-              <Mail className="mr-2" /> Contact Us
+            <Button asChild variant="outline" className="hover-scale">
+              <a href="https://calendar.app.google/txrKmHwrR9MzruMV6cid=bmFyZW5wYXJhc2hhcjFAZ21haWwuY29t" target="_blank" rel="noopener noreferrer">
+                <Mail className="mr-2" /> Talk to Us
+              </a>
             </Button>
           </div>
         </nav>
@@ -66,7 +47,7 @@ const Index = () => {
               Fetch resumes from your ATS, weight hiring factors, rank candidates with explainable rationale, and get a CSV to your inbox.
             </p>
             <div className="mt-8 flex items-center justify-center gap-3">
-              <Button size="lg" variant="hero" className="hover-scale" onClick={scrollToContact}>
+              <Button size="lg" variant="hero" className="hover-scale" onClick={scrollToCTA}>
                 Get Started <ArrowRight className="ml-2" />
               </Button>
               <a href="#how-it-works" className="text-sm md:text-base underline-offset-4 hover:underline">
@@ -125,35 +106,21 @@ const Index = () => {
           </div>
         </section>
 
-        <section id="contact" className="container mx-auto px-4 py-16 md:py-24">
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl md:text-4xl font-semibold">Contact us</h2>
-            <p className="mt-3 text-muted-foreground">Tell us about your role and hiring process. We’ll reply shortly.</p>
-          </div>
-          <form onSubmit={onSubmit} className="mx-auto mt-8 max-w-3xl grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <Label htmlFor="name">Name</Label>
-              <Input id="name" name="name" placeholder="Jane Doe" autoComplete="name" />
-            </div>
-            <div>
-              <Label htmlFor="email">Email *</Label>
-              <Input id="email" name="email" type="email" placeholder="jane@company.com" required autoComplete="email" />
-            </div>
-            <div>
-              <Label htmlFor="company">Company</Label>
-              <Input id="company" name="company" placeholder="Acme Inc." autoComplete="organization" />
-            </div>
-            <div className="md:col-span-2">
-              <Label htmlFor="message">Message *</Label>
-              <Textarea id="message" name="message" placeholder="What role are you hiring for?" required rows={5} />
-            </div>
-            <div className="md:col-span-2 flex items-center justify-between">
-              <p className="text-xs text-muted-foreground">We respect your privacy. No spam ever.</p>
-              <Button type="submit" size="lg" variant="hero" className="hover-scale">
-                Send message <ArrowRight className="ml-2" />
+        <section id="cta" className="container mx-auto px-4 py-16 md:py-24">
+          <div className="mx-auto max-w-5xl rounded-3xl border bg-card shadow-xl p-8 md:p-16 text-center">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
+              Create winning hires with <span className="text-gradient-primary">AI Resume Ranking</span>.
+            </h2>
+            <p className="mt-3 md:mt-4 text-muted-foreground text-base md:text-lg">Start for free. Cancel anytime.</p>
+            <div className="mt-6 flex items-center justify-center gap-3">
+              <Button size="lg" className="hover-scale" onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })}>
+                Get Started <ArrowRight className="ml-2" />
+              </Button>
+              <Button asChild size="lg" variant="outline" className="hover-scale">
+                <a href="https://calendar.app.google/txrKmHwrR9MzruMV6cid=bmFyZW5wYXJhc2hhcjFAZ21haWwuY29t" target="_blank" rel="noopener noreferrer">Talk to Us</a>
               </Button>
             </div>
-          </form>
+          </div>
         </section>
       </main>
 
