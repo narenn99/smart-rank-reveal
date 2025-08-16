@@ -42,7 +42,7 @@ const Index = () => {
               Screen resumes with <span className="text-gradient-primary">AI Resume Ranking</span>
             </h1>
             <p className="mt-4 text-lg text-muted-foreground">
-              We pull resumes from your ATS, auto-create role-specific hiring factors, weight them by importance, and score each resume — all at just ₹0.5 per resume, saving 95% cost over traditional screening.
+              We pull resumes from your ATS, auto-create role-specific hiring factors, weight them by importance, and score each resume — all at just ₹0.8 or $0.01 per resume, saving 95% cost over traditional screening.
             </p>
             <div className="mt-8 flex items-center justify-center gap-3">
               <Button size="lg" variant="hero" className="hover-scale" onClick={scrollToCTA}>
